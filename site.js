@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 app.get("*", function (req, res, next) {
-  var cookie = req.cookies.cookieName;
+  var cookie = req.cookies.rxid;
   if (cookie === undefined) {
     // no: set a new cookie
     var randomNumber = Math.random().toString();
