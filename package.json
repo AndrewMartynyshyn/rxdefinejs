@@ -1,0 +1,24 @@
+{
+  "name": "simplest-express-app",
+  "description": "An express project",
+  "version": "1.0.0",
+  "author": "Danielle <dan.thurow@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node site.js",
+    "dev": "nodemon ./site.js localhost 8080"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
