@@ -36,8 +36,8 @@ app.post("/data", function (req, res) {
   var rxid = req.cookies.rxid;
 
   res.json({
-    rxid: req.cookies || "NONE",
     ...req.body,
+    rxid: req.cookies.rxid || "NONE",
   });
 });
 
