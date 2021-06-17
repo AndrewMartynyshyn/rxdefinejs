@@ -21,7 +21,7 @@ app.get("*", function (req, res, next) {
     var randomNumber = Math.random().toString();
     randomNumber = randomNumber.substring(2, randomNumber.length);
     res.cookie("rxid", randomNumber, {
-      sameSite: "none",
+      sameSite: "lax",
       secure: true,
       maxAge: 900000,
       httpOnly: false,
