@@ -6,8 +6,6 @@ function grabFormData() {
     return obj;
   }, {});
 
-  console.log(result);
-
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "https://rxdefinejs.herokuapp.com/data", true);
 
@@ -15,7 +13,7 @@ function grabFormData() {
 
   xhr.onreadystatechange = function (res) {
     if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-      console.log(xhr);
+      console.dir(JSON.parse(xhr.response));
     }
   };
 
