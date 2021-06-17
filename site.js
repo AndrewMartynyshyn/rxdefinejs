@@ -23,7 +23,7 @@ app.get("*", function (req, res, next) {
     res.cookie("rxid", randomNumber, {
       sameSite: "none",
       secure: true,
-      maxAge: 9000000,
+      maxAge: 14 * 24 * 3600000,
       httpOnly: true,
       path: "/",
     });
