@@ -5,23 +5,29 @@ var cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 app.get("*", function (req, res, next) {
-  var cookie = req.cookies.rxid;
-  if (cookie === undefined) {
-    // no: set a new cookie
+  var rxid = req.cookies.rxid;
+
+  if (rxid === undefined) {
     var randomNumber = Math.random().toString();
     randomNumber = randomNumber.substring(2, randomNumber.length);
-    res.cookie("cookieName", randomNumber, {
+    res.cookie("rxid", randomNumber, {
       sameSite: "none",
       secure: true,
       maxAge: 900000,
       httpOnly: true,
     });
-    console.log("cookie created successfully");
-  } else {
-    // yes, cookie was already present
-    console.log("cookie exists", cookie);
   }
+
   next();
+});
+
+app.post("/data", function (req, res) {
+  var rxid = req.cookies.rxid;
+
+  return {
+    rxid: rxid,
+    body: req.body,
+  };
 });
 
 app.use("/static", express.static("static"));
