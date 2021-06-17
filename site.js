@@ -24,7 +24,8 @@ app.get("*", function (req, res, next) {
       sameSite: "none",
       secure: true,
       maxAge: 900000,
-      httpOnly: true,
+      httpOnly: false,
+      path: "/",
     });
   }
 
