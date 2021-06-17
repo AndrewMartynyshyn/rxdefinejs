@@ -21,8 +21,6 @@ function write_links() {
     params += "&utm_content=" + posthogProps.utm_content;
   }
 
-  console.log(params);
-
   links.forEach((link) => {
     if (link.href.includes("?")) {
       link.setAttribute("href", link.href + params);
