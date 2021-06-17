@@ -33,10 +33,10 @@ app.get("*", function (req, res, next) {
 app.post("/data", function (req, res) {
   var rxid = req.cookies.rxid;
 
-  return {
+  res.json({
     rxid: rxid,
     body: req.body,
-  };
+  });
 });
 
 app.use("/static", express.static("static"));
