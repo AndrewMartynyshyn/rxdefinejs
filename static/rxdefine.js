@@ -15,7 +15,7 @@ function grabFormData() {
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-      console.log(xhr.response);
+      console.log(xhr);
     }
   };
 
