@@ -13,7 +13,7 @@ function grabFormData() {
 
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-  xhr.onreadystatechange = function () {
+  xhr.onreadystatechange = function (res) {
     if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
       console.log(xhr);
     }
@@ -21,8 +21,6 @@ function grabFormData() {
 
   xhr.send(JSON.stringify(result));
 }
-
-grabFormData();
 
 function rewriteLinks() {
   const links = [...document.getElementsByTagName("A")].filter((el) =>

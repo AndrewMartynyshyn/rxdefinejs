@@ -3,6 +3,7 @@ var app = express();
 var cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
+app.use(express.json());
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -35,7 +36,7 @@ app.post("/data", function (req, res) {
 
   res.json({
     rxid: rxid,
-    body: req.body,
+    ...req.body,
   });
 });
 
