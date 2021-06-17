@@ -1,4 +1,4 @@
-function write_links() {
+function rewriteLinks() {
   const links = [...document.getElementsByTagName("A")].filter((el) =>
     el.href.includes("rxengage")
   );
@@ -30,10 +30,10 @@ function write_links() {
   });
 }
 
-(function wait_for_posthog() {
+(function waitForPosthog() {
   if (window.posthog && window.posthog.__loaded) {
-    write_links();
+    rewriteLinks();
   } else {
-    setTimeout(wait_for_posthog, 10);
+    setTimeout(waitForPosthog, 10);
   }
 })();
