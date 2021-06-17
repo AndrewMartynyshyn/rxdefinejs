@@ -31,7 +31,7 @@ function write_links() {
 }
 
 (function wait_for_posthog() {
-  if (window.posthog.__loaded === true) {
+  if (window.posthog && window.posthog.__loaded) {
     write_links();
   } else {
     setTimeout(wait_for_posthog, 10);
