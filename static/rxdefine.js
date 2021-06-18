@@ -38,9 +38,6 @@ function rewriteLinks() {
 
   let params = "";
   const posthogProps = window.posthog.persistence.props;
-  if (posthogProps.distinct_id !== undefined) {
-    params += "&utm_id=" + posthogProps.distinct_id;
-  }
   if (posthogProps.utm_campaign !== undefined) {
     params += "&utm_campaign=" + posthogProps.utm_campaign;
   }
