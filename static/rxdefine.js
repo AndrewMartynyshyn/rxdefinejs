@@ -16,7 +16,13 @@ function grabFormData() {
 
   xhr.onreadystatechange = function (res) {
     if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-      console.dir(JSON.parse(xhr.response));
+      const res = JSON.parse(xhr.response);
+      const container = document.getElementById("result");
+
+      for (var key in res) {
+        container.append('<div class="item">' + key + "</div>");
+        container.append('<div class="value">' + res[key] + "</div>");
+      }
     }
   };
 
@@ -45,6 +51,8 @@ function rewriteLinks() {
   if (posthogProps.utm_content !== undefined) {
     params += "&utm_content=" + posthogProps.utm_content;
   }
+
+  document.getElementById("params").innerHTML(params);
 
   links.forEach((link) => {
     if (link.href.includes("?")) {
