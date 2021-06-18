@@ -17,11 +17,13 @@ function grabFormData() {
   xhr.onreadystatechange = function (res) {
     if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
       const res = JSON.parse(xhr.response);
-      const container = document.getElementById("result");
+      const container = $("#result");
 
       for (var key in res) {
-        container.append('<div class="item">' + key + "</div>");
-        container.append('<div class="value">' + res[key] + "</div>");
+        container.append("<div>");
+        container.append("<span>" + key + ": </span>");
+        container.append("<strong>" + res[key] + "</strong>");
+        container.append("</div>");
       }
     }
   };
@@ -52,7 +54,7 @@ function rewriteLinks() {
     params += "&utm_content=" + posthogProps.utm_content;
   }
 
-  document.getElementById("params").innerHTML(params);
+  document.getElementById("params").innerHTML = params;
 
   links.forEach((link) => {
     if (link.href.includes("?")) {
