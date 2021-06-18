@@ -1,24 +1,26 @@
 function grabFormData() {
   const form = document.querySelector("form");
 
-  var data = Object.values(form).reduce((obj, field) => {
+  var result = Object.values(form).reduce((obj, field) => {
     obj[field.name] = field.value;
     return obj;
   }, {});
 
-  fetch("https://rxdefinejs.herokuapp.com/data", {
-    credentials: "include",
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      const json = await response.json();
-      console.dir(json);
-    })
-    .catch((err) => console.log(error));
+  console.log(result);
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+  xhr.open("POST", "https://rxdefinejs.herokuapp.com/data", true);
+
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+  xhr.onreadystatechange = function (res) {
+    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+      console.dir(JSON.parse(xhr.response));
+    }
+  };
+
+  xhr.send(JSON.stringify(result));
 }
 
 function rewriteLinks() {
