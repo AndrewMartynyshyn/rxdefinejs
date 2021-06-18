@@ -39,7 +39,7 @@ app.post("/data", function (req, res) {
 
   res.json({
     ...req.body,
-    rxid: req.cookies.rxid || "NONE",
+    rxid: rxid || "NONE",
   });
 });
 
