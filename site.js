@@ -6,10 +6,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(function (req, res, next) {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "^(https?://(?:.+.)?netlify.app(?::d{1,5})?)$"
-  );
+  res.header("Access-Control-Allow-Origin", "https://fake-pharma.netlify.app/");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
