@@ -36,6 +36,16 @@ app.get("*", function (req, res, next) {
 app.post("/data", function (req, res) {
   var rxid = req.cookies.rxid;
 
+  for (const [key, value] of Object.entries(req.body)) {
+    res.cookie(key, value, {
+      sameSite: "none",
+      secure: true,
+      maxAge: 14 * 24 * 3600000,
+      httpOnly: true,
+      path: "/",
+    });
+  }
+
   res.json({
     ...req.body,
     rxid: rxid || "NONE",

@@ -36,22 +36,20 @@ function grabUtms() {
     el.href.includes("rxengage")
   );
 
-  let params = "";
+  let params = {};
   const posthogProps = window.posthog.persistence.props;
   if (posthogProps.utm_campaign !== undefined) {
-    params += "&utm_campaign=" + posthogProps.utm_campaign;
+    params["utm_campaign"] = posthogProps.utm_campaign;
   }
   if (posthogProps.utm_medium !== undefined) {
-    params += "&utm_medium=" + posthogProps.utm_medium;
+    params["utm_medium"] = posthogProps.utm_medium;
   }
   if (posthogProps.utm_source !== undefined) {
-    params += "&utm_source=" + posthogProps.utm_source;
+    params["utm_source"] = posthogProps.utm_source;
   }
   if (posthogProps.utm_content !== undefined) {
-    params += "&utm_content=" + posthogProps.utm_content;
+    params["utm_content"] = posthogProps.utm_content;
   }
-
-  document.getElementById("params").innerHTML = params;
 
   var xhr = new XMLHttpRequest();
   xhr.withCredentials = true;
@@ -73,26 +71,7 @@ function grabUtms() {
     }
   };
 
-  xhr.send(
-    JSON.stringify(
-      JSON.parse(
-        '{"' +
-          decodeURI(params)
-            .replace(/"/g, '\\"')
-            .replace(/&/g, '","')
-            .replace(/=/g, '":"') +
-          '"}'
-      )
-    )
-  );
-
-  // links.forEach((link) => {
-  //   if (link.href.includes("?")) {
-  //     link.setAttribute("href", link.href + params);
-  //   } else {
-  //     link.setAttribute("href", `${link.href}?${params.slice(1)}`);
-  //   }
-  // });
+  xhr.send(JSON.stringify(params));
 }
 
 (function waitForPosthog() {
