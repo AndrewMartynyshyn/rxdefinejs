@@ -42,6 +42,12 @@ app.post("/data", function (req, res) {
   });
 });
 
+app.post("/utms", function (req, res) {
+  res.json({
+    ...req.body,
+  });
+});
+
 app.use("/static", express.static("static"));
 
 const PORT = process.env.PORT || 5000;

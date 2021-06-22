@@ -31,7 +31,7 @@ function grabFormData() {
   xhr.send(JSON.stringify(result));
 }
 
-function rewriteLinks() {
+function grabUtms() {
   const links = [...document.getElementsByTagName("A")].filter((el) =>
     el.href.includes("rxengage")
   );
@@ -53,18 +53,51 @@ function rewriteLinks() {
 
   document.getElementById("params").innerHTML = params;
 
-  links.forEach((link) => {
-    if (link.href.includes("?")) {
-      link.setAttribute("href", link.href + params);
-    } else {
-      link.setAttribute("href", `${link.href}?${params.slice(1)}`);
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+  xhr.open("POST", "https://rxdefinejs.herokuapp.com/utms", true);
+
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+  xhr.onreadystatechange = function (res) {
+    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+      const res = JSON.parse(xhr.response);
+      const container = $("#result");
+
+      for (var key in res) {
+        container.append("<div>");
+        container.append("<span>" + key + ": </span>");
+        container.append("<strong>" + res[key] + "</strong>");
+        container.append("</div>");
+      }
     }
-  });
+  };
+
+  xhr.send(
+    JSON.stringify(
+      JSON.parse(
+        '{"' +
+          decodeURI(params)
+            .replace(/"/g, '\\"')
+            .replace(/&/g, '","')
+            .replace(/=/g, '":"') +
+          '"}'
+      )
+    )
+  );
+
+  // links.forEach((link) => {
+  //   if (link.href.includes("?")) {
+  //     link.setAttribute("href", link.href + params);
+  //   } else {
+  //     link.setAttribute("href", `${link.href}?${params.slice(1)}`);
+  //   }
+  // });
 }
 
 (function waitForPosthog() {
   if (window.posthog && window.posthog.__loaded) {
-    rewriteLinks();
+    grabUtms();
   } else {
     setTimeout(waitForPosthog, 10);
   }
