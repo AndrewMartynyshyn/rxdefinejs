@@ -36,7 +36,7 @@ function rewriteUrls() {
     el.href.includes("rxengage")
   );
 
-  let params = {};
+  let params = "";
   const posthogProps = window.posthog.persistence.props;
 
   if (posthogProps.distinct_id !== undefined) {
