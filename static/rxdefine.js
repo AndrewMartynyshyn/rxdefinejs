@@ -42,21 +42,17 @@ function rewriteUrls() {
   if (posthogProps.distinct_id !== undefined) {
     params += "&ph_id=" + posthogProps.distinct_id;
   }
-
   if (posthogProps.utm_campaign !== undefined) {
-    params["utm_campaign"] = posthogProps.utm_campaign;
+    params += "&utm_campaign=" + posthogProps.utm_campaign;
   }
-
   if (posthogProps.utm_medium !== undefined) {
-    params["utm_medium"] = posthogProps.utm_medium;
+    params += "&utm_medium=" + posthogProps.utm_medium;
   }
-
   if (posthogProps.utm_source !== undefined) {
-    params["utm_source"] = posthogProps.utm_source;
+    params += "&utm_source=" + posthogProps.utm_source;
   }
-
   if (posthogProps.utm_content !== undefined) {
-    params["utm_content"] = posthogProps.utm_content;
+    params += "&utm_content=" + posthogProps.utm_content;
   }
 
   document.getElementById("params").innerHTML = params;
