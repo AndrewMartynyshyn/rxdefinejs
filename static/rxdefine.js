@@ -27,7 +27,7 @@ window.rxdefine = (function () {
        */
 
       //get ph_id and condition_id
-      var ph_id = posthogProps.distinct_id;
+      var ph_id = window.posthog.persistence.props.distinct_id;
       var condition_id = rx.getConditionId();
 
       console.log("fetched posthog id: " + ph_id);
