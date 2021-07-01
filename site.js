@@ -58,6 +58,12 @@ app.post("/utms", function (req, res) {
   });
 });
 
+app.post("/rx", function (req, res) {
+  res.json({
+    rx_id: "someidhere",
+  });
+});
+
 app.use("/static", express.static("static"));
 
 const PORT = process.env.PORT || 5000;
